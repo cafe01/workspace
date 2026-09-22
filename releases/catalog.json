@@ -7,7 +7,17 @@
     "public_url": "https://cafe01.github.io/workspace/",
     "support_url": "https://github.com/cafe01/workspace/issues"
   },
-  "current_release_id": null,
-  "updated_at": "2026-09-21T00:00:00Z",
-  "releases": []
+  "current_release_id": "workspace-v0.1.0-preview.1",
+  "updated_at": "2026-09-22T19:12:42.313521Z",
+  "releases": [
+    {
+      "release_id": "workspace-v0.1.0-preview.1",
+      "version": "0.1.0-preview.1",
+      "status": "current",
+      "release_url": "https://github.com/cafe01/workspace/releases/tag/workspace-v0.1.0-preview.1",
+      "descriptor_url": "https://github.com/cafe01/workspace/releases/download/workspace-v0.1.0-preview.1/product-release.json",
+      "descriptor_sha256": "188688cc4d3c996a5712f64c8c876d7522471395b2d82d467a8d4a3928f700da",
+      "status_changed_at": "2026-09-22T19:12:42.313521Z"
+    }
+  ]
 }
