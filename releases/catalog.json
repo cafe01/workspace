@@ -7,8 +7,8 @@
     "public_url": "https://cafe01.github.io/workspace/",
     "support_url": "https://github.com/cafe01/workspace/issues"
   },
-  "current_release_id": null,
-  "updated_at": "2026-09-22T19:26:48.131786Z",
+  "current_release_id": "workspace-v0.1.0-preview.2",
+  "updated_at": "2026-09-22T19:34:25.114245Z",
   "releases": [
     {
       "release_id": "workspace-v0.1.0-preview.1",
@@ -19,6 +19,15 @@
       "descriptor_sha256": "188688cc4d3c996a5712f64c8c876d7522471395b2d82d467a8d4a3928f700da",
       "status_changed_at": "2026-09-22T19:26:48.131786Z",
       "withdrawal_reason": "Windows x64 installation fails pre-activation verification; corrected preview pending."
+    },
+    {
+      "release_id": "workspace-v0.1.0-preview.2",
+      "version": "0.1.0-preview.2",
+      "status": "current",
+      "release_url": "https://github.com/cafe01/workspace/releases/tag/workspace-v0.1.0-preview.2",
+      "descriptor_url": "https://github.com/cafe01/workspace/releases/download/workspace-v0.1.0-preview.2/product-release.json",
+      "descriptor_sha256": "1d9615b5471e1f0d56c19138f3f6206f3caa0311c957a6d4b23c7676301bfb32",
+      "status_changed_at": "2026-09-22T19:34:25.114245Z"
     }
   ]
 }

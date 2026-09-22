@@ -121,6 +121,9 @@ try {
   if ($WorkspaceInstallFault -eq 'extraction') { Fail 'injected update fault at extraction' }
   $applicationHost = Join-Path $stage 'workspace\application-v1'; $exe = Join-Path $applicationHost 'cli\bundle\bin\workspace.exe'; $manifestPath = Join-Path $applicationHost 'content-manifest.json'
   if (-not (Test-Path -LiteralPath $exe -PathType Leaf) -or -not (Test-Path -LiteralPath $manifestPath -PathType Leaf)) { Fail 'archive layout verification failed' }
+  $applicationHost = (Resolve-Path -LiteralPath $applicationHost).ProviderPath
+  $manifestPath = (Resolve-Path -LiteralPath $manifestPath).ProviderPath
+  $exe = (Resolve-Path -LiteralPath $exe).ProviderPath
   if (Get-ChildItem -LiteralPath $applicationHost -Recurse -Force | Where-Object { $_.Attributes -band [IO.FileAttributes]::ReparsePoint }) { Fail 'archive layout contains a link or reparse point' }
   if ((Get-Sha256 $manifestPath) -ne $artifact.content_manifest_sha256) { Fail 'content manifest SHA-256 verification failed' }
   try {
@@ -139,8 +142,15 @@ try {
       $manifestPaths += $file.path
     }
     if ($manifestPaths -notcontains 'cli/bundle/bin/workspace.exe') { throw 'manifest omits executable' }
-    $actualPaths = @(Get-ChildItem -LiteralPath $applicationHost -Recurse -File | Where-Object { $_.FullName -ne $manifestPath } | ForEach-Object { $_.FullName.Substring($applicationHost.Length + 1).Replace('\','/') } | Sort-Object)
-    if (@(Compare-Object ($manifestPaths | Sort-Object) $actualPaths).Count -ne 0) { throw 'archive contains files outside the content manifest' }
+    $hostPrefix = $applicationHost.TrimEnd('\') + '\'
+    $actualPaths = @(Get-ChildItem -LiteralPath $applicationHost -Recurse -File -Force | ForEach-Object {
+      $fullPath = (Resolve-Path -LiteralPath $_.FullName).ProviderPath
+      if ($fullPath -eq $manifestPath) { return }
+      if (-not $fullPath.StartsWith($hostPrefix, [StringComparison]::OrdinalIgnoreCase)) { throw 'archive file escaped application host' }
+      $fullPath.Substring($hostPrefix.Length).Replace('\','/')
+    } | Sort-Object)
+    $difference = @(Compare-Object ($manifestPaths | Sort-Object) $actualPaths)
+    if ($difference.Count -ne 0) { throw "archive contains files outside the content manifest (expected=$($manifestPaths.Count), observed=$($actualPaths.Count), difference=$($difference.Count))" }
     $version = & $exe --json --version | ConvertFrom-Json; if ($LASTEXITCODE -ne 0) { throw 'staged version probe failed' }
     Assert-Properties $version @('schema_version','result'); Assert-Properties $version.result @('product_id','version','release_id','source_revision','platform','architecture','runtime_compatibility_id')
     if ($version.schema_version -ne 1) { throw 'staged version schema mismatch' }
