@@ -16,14 +16,15 @@
         <p class="notice" role="status"><strong>Current release 0.1.0-preview.3.</strong> Release <code>workspace-v0.1.0-preview.3</code> is recommended. Review its <a href="https://github.com/cafe01/workspace/releases/tag/workspace-v0.1.0-preview.3">immutable release details</a> or the <a href="releases/catalog.json">public release catalog</a> before installing.</p>
       </section>
       <section id="install" aria-labelledby="install-title">
-        <h2 id="install-title">Choose your system</h2>
+        <h2 id="install-title">Install Workspace</h2>
+        <p>Choose your system, copy its command, and paste it into Terminal or PowerShell. The command downloads and runs the installer.</p>
         <div class="choices">
-          <article><h3>macOS</h3><p>macOS 14+ on Apple Silicon.</p><a href="install-workspace.sh" download>Download the macOS/Linux installer</a></article>
-          <article><h3>Windows</h3><p>Windows 10 or 11 x64.</p><a href="install-workspace.ps1" download>Download the Windows installer</a></article>
-          <article><h3>Ubuntu Linux</h3><p>Ubuntu 22.04 or 24.04 x64 (glibc).</p><a href="install-workspace.sh" download>Download the macOS/Linux installer</a></article>
+          <article><h3>macOS</h3><p>macOS 14+ on Apple Silicon. Paste into Terminal.</p><pre><code id="macos-command">curl -fsSLo install-workspace.sh https://cafe01.github.io/workspace/install-workspace.sh &amp;&amp; sh install-workspace.sh</code></pre><button type="button" data-copy-command="macos-command">Copy command</button></article>
+          <article><h3>Windows</h3><p>Windows 10 or 11 x64. Paste into PowerShell.</p><pre><code id="windows-command">Invoke-WebRequest https://cafe01.github.io/workspace/install-workspace.ps1 -OutFile install-workspace.ps1; if ($?) { powershell -NoProfile -ExecutionPolicy Bypass -File .\install-workspace.ps1 }</code></pre><button type="button" data-copy-command="windows-command">Copy command</button></article>
+          <article><h3>Ubuntu Linux</h3><p>Ubuntu 22.04 or 24.04 x64 (glibc). Paste into Terminal.</p><pre><code id="ubuntu-command">curl -fsSLo install-workspace.sh https://cafe01.github.io/workspace/install-workspace.sh &amp;&amp; sh install-workspace.sh</code></pre><button type="button" data-copy-command="ubuntu-command">Copy command</button></article>
         </div>
-        <h3>Install and prepare</h3>
-        <p>Download and inspect the installer, then run <code>sh install-workspace.sh</code> on macOS or Ubuntu, or <code>powershell -NoProfile -ExecutionPolicy Bypass -File .\install-workspace.ps1</code> on Windows. It verifies the complete archive before activation and never asks for administrator access.</p>
+        <p>You can <a href="install-workspace.sh" download>review the macOS/Linux installer</a> or <a href="install-workspace.ps1" download>review the Windows installer</a> before running it. The installer verifies the complete archive before activation and never asks for administrator access.</p>
+        <h3>Prepare your Workspace</h3>
         <p>Placement is not readiness. Run <code>workspace provision</code>, then <code>workspace provision --check</code>. The application stores its host and prepared runtime in your user-owned application-data location; your folders and source files stay where they are.</p>
       </section>
       <section id="help" aria-labelledby="help-title">
@@ -33,5 +34,24 @@
       </section>
     </main>
     <footer>Workspace preview · <a href="https://github.com/cafe01/workspace/issues">Support</a></footer>
+    <script>
+      document.querySelectorAll('[data-copy-command]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const command = document.getElementById(button.dataset.copyCommand);
+          try {
+            await navigator.clipboard.writeText(command.textContent.trim());
+            button.textContent = 'Copied';
+            setTimeout(() => { button.textContent = 'Copy command'; }, 2000);
+          } catch (_) {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(command);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            button.textContent = 'Selected — copy manually';
+          }
+        });
+      });
+    </script>
   </body>
 </html>
