@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Workspace — preview downloads</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header><nav aria-label="Workspace"><a href="/workspace/">Workspace</a><a href="#install">Install</a><a href="#help">Help</a></nav></header>
+    <main>
+      <section aria-labelledby="product-title">
+        <p class="eyebrow">Preview</p>
+        <h1 id="product-title">Make a living folder usable.</h1>
+        <p>Workspace is a local command application for inspecting, searching and opening source material. This is an unsigned preview for design partners, not a commercial launch.</p>
+        <p class="notice" role="status"><strong>No release is currently available.</strong> When an accepted preview is promoted, its exact version, integrity information and downloads will appear in the <a href="releases/catalog.json">public release catalog</a>.</p>
+      </section>
+      <section id="install" aria-labelledby="install-title">
+        <h2 id="install-title">Choose your system</h2>
+        <div class="choices">
+          <article><h3>macOS</h3><p>macOS 14+ on Apple Silicon.</p><a href="install-workspace.sh" download>Download the macOS/Linux installer</a></article>
+          <article><h3>Windows</h3><p>Windows 10 or 11 x64.</p><a href="install-workspace.ps1" download>Download the Windows installer</a></article>
+          <article><h3>Ubuntu Linux</h3><p>Ubuntu 22.04 or 24.04 x64 (glibc).</p><a href="install-workspace.sh" download>Download the macOS/Linux installer</a></article>
+        </div>
+        <h3>Install and prepare</h3>
+        <p>Download and inspect the installer, then run <code>sh install-workspace.sh</code> on macOS or Ubuntu, or <code>powershell -NoProfile -ExecutionPolicy Bypass -File .\install-workspace.ps1</code> on Windows. It verifies the complete archive before activation and never asks for administrator access.</p>
+        <p>Placement is not readiness. Run <code>workspace provision</code>, then <code>workspace provision --check</code>. The application stores its host and prepared runtime in your user-owned application-data location; your folders and source files stay where they are.</p>
+      </section>
+      <section id="help" aria-labelledby="help-title">
+        <h2 id="help-title">Unsigned-preview recovery</h2>
+        <p>Your operating system may warn before opening an unsigned preview. Keep normal system protections enabled. Verify the installer’s source and the release catalog, use the ordinary per-app “Open anyway” or “Run anyway” control only after that check, and contact support if an expected release is absent or verification fails.</p>
+        <p>For a failed install, rerun the downloaded installer after checking your network and disk space. It preserves the previously active host; do not delete Workspace folders or your workspaces to recover.</p>
+      </section>
+    </main>
+    <footer>Workspace preview · <a href="https://github.com/cafe01/workspace/issues">Support</a></footer>
+  </body>
+</html>

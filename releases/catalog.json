@@ -1,0 +1,13 @@
+{
+  "schema": "product.delivery/release-catalog/v1",
+  "product": {
+    "product_id": "workspace",
+    "display_name": "Workspace",
+    "channel": "preview",
+    "public_url": "https://cafe01.github.io/workspace/",
+    "support_url": "https://github.com/cafe01/workspace/issues"
+  },
+  "current_release_id": null,
+  "updated_at": "2026-09-21T00:00:00Z",
+  "releases": []
+}
