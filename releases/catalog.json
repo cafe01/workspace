@@ -7,8 +7,8 @@
     "public_url": "https://cafe01.github.io/workspace/",
     "support_url": "https://github.com/cafe01/workspace/issues"
   },
-  "current_release_id": "workspace-v0.1.0-preview.3",
-  "updated_at": "2026-09-22T19:51:41.479962Z",
+  "current_release_id": "workspace-v0.1.0-preview.4",
+  "updated_at": "2026-10-05T17:36:02.344152Z",
   "releases": [
     {
       "release_id": "workspace-v0.1.0-preview.1",
@@ -33,11 +33,20 @@
     {
       "release_id": "workspace-v0.1.0-preview.3",
       "version": "0.1.0-preview.3",
-      "status": "current",
+      "status": "superseded",
       "release_url": "https://github.com/cafe01/workspace/releases/tag/workspace-v0.1.0-preview.3",
       "descriptor_url": "https://github.com/cafe01/workspace/releases/download/workspace-v0.1.0-preview.3/product-release.json",
       "descriptor_sha256": "7be92607b9f9e828580ccffcec7f51605b9d04fbcc1b61b70182527e39322d94",
-      "status_changed_at": "2026-09-22T19:51:41.479962Z"
+      "status_changed_at": "2026-10-05T17:36:02.344152Z"
+    },
+    {
+      "release_id": "workspace-v0.1.0-preview.4",
+      "version": "0.1.0-preview.4",
+      "status": "current",
+      "release_url": "https://github.com/cafe01/workspace/releases/tag/workspace-v0.1.0-preview.4",
+      "descriptor_url": "https://github.com/cafe01/workspace/releases/download/workspace-v0.1.0-preview.4/product-release.json",
+      "descriptor_sha256": "3872d29b3fcc528446686eb3104c9049c3825fbf23556dacf0c5712e298c810c",
+      "status_changed_at": "2026-10-05T17:36:02.344152Z"
     }
   ]
 }
